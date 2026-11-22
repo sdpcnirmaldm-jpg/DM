@@ -1,0 +1,831 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #F6F9F7;
+    color: #14201B;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2 {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.012em;
+  }
+
+  h3, h4, .font-display {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: 0em;
+  }
+
+  .font-mono, .tabular-nums {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  button:not(:disabled),
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    transition:
+      background-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  button:not(:disabled):active {
+    transform: scale(0.985);
+  }
+
+  :focus-visible {
+    outline: 2px solid #047857;
+    outline-offset: 2px;
+  }
+}
+
+/* Official Google Sign-In Material Button */
+.gsi-material-button {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  background-color: #ffffff;
+  border: 1px solid #747775;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 44px;
+  letter-spacing: 0.15px;
+  outline: none;
+  overflow: hidden;
+  padding: 0 18px;
+  position: relative;
+  text-align: center;
+  transition: background-color 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s;
+  vertical-align: middle;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gsi-material-button:hover {
+  background-color: #f8faf9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.gsi-material-button-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gsi-material-button-icon {
+  height: 20px;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only-full {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .crf-page-break {
+    page-break-after: always;
+    break-after: page;
+  }
+}
+
+/* View & Interactive Surface Motion System */
+@keyframes viewEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.975) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes msgSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* AI Voice Conversation Stage Keyframes (compositor-only) */
+@keyframes voiceOrbRipple {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.92);
+  }
+  70% {
+    opacity: 0.18;
+    transform: scale(1.42);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.56);
+  }
+}
+
+@keyframes voiceOrbBreathe {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.92;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes voiceSpinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes voiceBridgeFlowRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-36px) scaleX(0.6);
+  }
+  35% {
+    opacity: 0.95;
+    transform: translateX(0px) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(48px) scaleX(0.6);
+  }
+}
+
+@keyframes voiceBridgeFlowLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(48px) scaleX(0.6);
+  }
+  35% {
+    opacity: 0.95;
+    transform: translateX(0px) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-36px) scaleX(0.6);
+  }
+}
+
+@keyframes voiceEqualizerSpeak {
+  0%, 100% {
+    transform: scaleY(0.28);
+  }
+  30% {
+    transform: scaleY(0.95);
+  }
+  65% {
+    transform: scaleY(0.48);
+  }
+}
+
+@keyframes voiceEqualizerIdle {
+  0%, 100% {
+    transform: scaleY(0.24);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleY(0.46);
+    opacity: 0.85;
+  }
+}
+
+.view-enter {
+  animation: viewEnter 260ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.modal-pop-in {
+  animation: modalPopIn 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.msg-slide-in {
+  animation: msgSlideIn 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.card-elevate {
+  transition:
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-elevate:hover {
+  transform: translateY(-1px);
+  border-color: #BFD5C9;
+  box-shadow: 0 6px 18px -10px rgba(5, 59, 43, 0.16);
+}
+
+.voice-orb-ripple-1 {
+  animation: voiceOrbRipple 1.65s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.voice-orb-ripple-2 {
+  animation: voiceOrbRipple 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.55s infinite;
+}
+
+.voice-orb-breathe {
+  animation: voiceOrbBreathe 2.8s ease-in-out infinite;
+}
+
+.voice-spin-slow {
+  animation: voiceSpinSlow 2.4s linear infinite;
+}
+
+.voice-bridge-right {
+  animation: voiceBridgeFlowRight 1.3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.voice-bridge-left {
+  animation: voiceBridgeFlowLeft 1.15s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.voice-eq-speak {
+  transform-origin: center;
+  animation: voiceEqualizerSpeak 0.72s ease-in-out infinite;
+}
+
+.voice-eq-idle {
+  transform-origin: center;
+  animation: voiceEqualizerIdle 2.1s ease-in-out infinite;
+}
+
+/* Chart Animations */
+@keyframes chartFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chartBarRise {
+  from {
+    opacity: 0.35;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes chartBarHoriz {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes chartScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes chartPieSweep {
+  from {
+    opacity: 0.25;
+    stroke-dashoffset: var(--pie-start-offset, 490);
+  }
+  to {
+    opacity: 1;
+    stroke-dashoffset: var(--pie-end-offset, 0);
+  }
+}
+
+@keyframes chartLineDraw {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 600;
+  }
+  to {
+    opacity: 0.72;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes heroSheen {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  45%, 100% {
+    transform: translateX(240%) skewX(-18deg);
+  }
+}
+
+.hero-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(167, 243, 208, 0.14) 52%,
+    transparent 100%
+  );
+  width: 48%;
+  animation: heroSheen 8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.stagger-1 {
+  animation: viewEnter 300ms cubic-bezier(0.16, 1, 0.3, 1) 45ms both;
+}
+.stagger-2 {
+  animation: viewEnter 300ms cubic-bezier(0.16, 1, 0.3, 1) 95ms both;
+}
+.stagger-3 {
+  animation: viewEnter 300ms cubic-bezier(0.16, 1, 0.3, 1) 145ms both;
+}
+.stagger-4 {
+  animation: viewEnter 300ms cubic-bezier(0.16, 1, 0.3, 1) 195ms both;
+}
+.stagger-5 {
+  animation: viewEnter 300ms cubic-bezier(0.16, 1, 0.3, 1) 245ms both;
+}
+
+.row-interactive {
+  transition:
+    background-color 150ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.row-interactive:hover {
+  background-color: #f3f9f5;
+}
+
+.chart-fade-up {
+  animation: chartFadeUp 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.chart-bar-rise {
+  animation: chartBarRise 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.chart-bar-horiz {
+  animation: chartBarHoriz 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.chart-scale-in {
+  animation: chartScaleIn 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.chart-pie-sweep {
+  animation: chartPieSweep 0.68s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.chart-line-draw {
+  stroke-dasharray: 600;
+  animation: chartLineDraw 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes clinicLogoEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes clinicLogoFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.015);
+  }
+}
+
+@keyframes loginCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes loginRailReveal {
+  from {
+    opacity: 0.2;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes loginStageSheen {
+  0% {
+    transform: translateX(-140%) skewX(-18deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  55%, 100% {
+    transform: translateX(260%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+@keyframes loginGridDrift {
+  0% {
+    transform: translate3d(0px, 0px, 0);
+  }
+  100% {
+    transform: translate3d(-24px, -24px, 0);
+  }
+}
+
+@keyframes loginConsoleRise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loginPanelSwitch {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes clinicalEcgSweep {
+  0% {
+    stroke-dashoffset: 520;
+    opacity: 0.25;
+  }
+  45% {
+    opacity: 0.95;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.25;
+  }
+}
+
+@keyframes clinicalGlucoseWave {
+  0% {
+    stroke-dashoffset: 480;
+    opacity: 0.18;
+  }
+  50% {
+    opacity: 0.55;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.18;
+  }
+}
+
+.login-card-enter {
+  animation: loginCardEnter 640ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.login-rail-reveal {
+  transform-origin: top center;
+  animation: loginRailReveal 780ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+}
+
+.login-stage-sheen {
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 48%,
+    rgba(16, 185, 129, 0.08) 54%,
+    transparent 100%
+  );
+  animation: loginStageSheen 6.5s cubic-bezier(0.16, 1, 0.3, 1) 400ms infinite;
+}
+
+.login-grid-drift {
+  animation: loginGridDrift 22s linear infinite alternate;
+}
+
+.clinic-logo-animated {
+  animation:
+    clinicLogoEnter 720ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both,
+    clinicLogoFloat 4.2s ease-in-out 860ms infinite;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clinic-logo-animated:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+.clinical-ecg-trace {
+  stroke-dasharray: 280;
+  animation: clinicalEcgSweep 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.clinical-glucose-wave {
+  stroke-dasharray: 240;
+  animation: clinicalGlucoseWave 4.8s ease-in-out infinite;
+}
+
+.login-stagger-1 {
+  animation: loginConsoleRise 520ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+}
+.login-stagger-2 {
+  animation: loginConsoleRise 520ms cubic-bezier(0.16, 1, 0.3, 1) 190ms both;
+}
+.login-stagger-3 {
+  animation: loginConsoleRise 520ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;
+}
+.login-stagger-4 {
+  animation: loginConsoleRise 520ms cubic-bezier(0.16, 1, 0.3, 1) 310ms both;
+}
+.login-stagger-5 {
+  animation: loginConsoleRise 520ms cubic-bezier(0.16, 1, 0.3, 1) 370ms both;
+}
+.login-stagger-6 {
+  animation: loginConsoleRise 520ms cubic-bezier(0.16, 1, 0.3, 1) 430ms both;
+}
+
+.login-panel-switch {
+  animation: loginPanelSwitch 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cta-sheen-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-sheen-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 100%
+  );
+  transform: translateX(-160%) skewX(-18deg);
+  animation: loginStageSheen 5.8s cubic-bezier(0.16, 1, 0.3, 1) 1.2s infinite;
+  pointer-events: none;
+}
+
+@keyframes analysisPanelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chartRingSweep {
+  from {
+    opacity: 0.35;
+    stroke-dashoffset: var(--ring-circ, 113.1);
+  }
+  to {
+    opacity: 1;
+    stroke-dashoffset: var(--ring-offset, 0);
+  }
+}
+
+@keyframes chartRadarReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.62);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.analysis-panel-enter {
+  animation: analysisPanelEnter 340ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.analysis-stagger-1 {
+  animation: chartFadeUp 420ms cubic-bezier(0.16, 1, 0.3, 1) 40ms both;
+}
+.analysis-stagger-2 {
+  animation: chartFadeUp 420ms cubic-bezier(0.16, 1, 0.3, 1) 95ms both;
+}
+.analysis-stagger-3 {
+  animation: chartFadeUp 420ms cubic-bezier(0.16, 1, 0.3, 1) 150ms both;
+}
+.analysis-stagger-4 {
+  animation: chartFadeUp 420ms cubic-bezier(0.16, 1, 0.3, 1) 205ms both;
+}
+.analysis-stagger-5 {
+  animation: chartFadeUp 420ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+}
+.analysis-stagger-6 {
+  animation: chartFadeUp 420ms cubic-bezier(0.16, 1, 0.3, 1) 315ms both;
+}
+
+.chart-ring-sweep {
+  animation: chartRingSweep 780ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.chart-radar-reveal {
+  animation: chartRadarReveal 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes journeyLineDraw {
+  from {
+    opacity: 0.25;
+    stroke-dashoffset: 900;
+  }
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes journeyAreaFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes journeySpineReveal {
+  from {
+    opacity: 0.2;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes journeyBarFill {
+  from {
+    opacity: 0.35;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.journey-line-draw {
+  stroke-dasharray: 900;
+  animation: journeyLineDraw 950ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.journey-area-fade {
+  animation: journeyAreaFade 700ms cubic-bezier(0.16, 1, 0.3, 1) 240ms both;
+}
+
+.journey-spine-reveal {
+  transform-origin: top center;
+  animation: journeySpineReveal 750ms cubic-bezier(0.16, 1, 0.3, 1) 100ms both;
+}
+
+.journey-bar-fill {
+  transform-origin: left center;
+  animation: journeyBarFill 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view-enter,
+  .modal-pop-in,
+  .msg-slide-in,
+  .hero-sheen,
+  .stagger-1,
+  .stagger-2,
+  .stagger-3,
+  .stagger-4,
+  .stagger-5,
+  .row-interactive,
+  .voice-orb-ripple-1,
+  .voice-orb-ripple-2,
+  .voice-orb-breathe,
+  .voice-spin-slow,
+  .voice-bridge-right,
+  .voice-bridge-left,
+  .voice-eq-speak,
+  .voice-eq-idle,
+  .chart-fade-up,
+  .chart-bar-rise,
+  .chart-bar-horiz,
+  .chart-scale-in,
+  .chart-pie-sweep,
+  .chart-line-draw,
+  .analysis-panel-enter,
+  .analysis-stagger-1,
+  .analysis-stagger-2,
+  .analysis-stagger-3,
+  .analysis-stagger-4,
+  .analysis-stagger-5,
+  .analysis-stagger-6,
+  .chart-ring-sweep,
+  .chart-radar-reveal,
+  .journey-line-draw,
+  .journey-area-fade,
+  .journey-spine-reveal,
+  .journey-bar-fill,
+  .login-card-enter,
+  .login-rail-reveal,
+  .login-stage-sheen,
+  .login-grid-drift,
+  .clinic-logo-animated,
+  .clinical-ecg-trace,
+  .clinical-glucose-wave,
+  .login-stagger-1,
+  .login-stagger-2,
+  .login-stagger-3,
+  .login-stagger-4,
+  .login-stagger-5,
+  .login-stagger-6,
+  .login-panel-switch,
+  .cta-sheen-wrap::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

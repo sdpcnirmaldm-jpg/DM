@@ -1,0 +1,14 @@
+
+
+remove google login, google sheet access, firebase and migrate firebase data to supabase, remove drizzle 
+migrate firebase to supabase and use supabase bucket, and users 
+remove node mailer and we don't send mail 
+remove seeder files 
+remove all the test cases from utils 
+
+add chart libarary 
+add role base access (and only admin can create a new account with email password only, no regirsteration flow)
+add state managament (zustang)
+add routes and route guard 
+add eract query for cache 
+

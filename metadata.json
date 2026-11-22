@@ -1,0 +1,6 @@
+{
+  "name": "Desai T2DM Phenotype Study Portal",
+  "description": "Clinical research and Type 2 Diabetes Mellitus phenotypic classification portal integrating Blue Index, DDS-17, FibroScan, statistical analysis, and Google Workspace sync.",
+  "requestFramePermissions": ["microphone", "camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
