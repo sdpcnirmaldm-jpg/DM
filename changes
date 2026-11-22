@@ -5,10 +5,17 @@ migrate firebase to supabase and use supabase bucket, and users
 remove node mailer and we don't send mail 
 remove seeder files 
 remove all the test cases from utils 
+remove socket and insted we use supabase realtime 
+remove express
+remove pg and migrate data to supabase 
 
-add chart libarary 
 add role base access (and only admin can create a new account with email password only, no regirsteration flow)
+add chart libarary 
 add state managament (zustang)
 add routes and route guard 
 add eract query for cache 
+
+
+we are going to deploy in render web service 
+we are going to deploy this app so we need 2 env, prod and test so we use 2 DB 
 
