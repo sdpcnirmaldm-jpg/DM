@@ -8,6 +8,8 @@ remove all the test cases from utils
 remove socket and insted we use supabase realtime 
 remove express
 remove pg and migrate data to supabase 
+remove server.ts and migrate to supabase and setup vite build serve command on start script 
+
 
 add role base access (and only admin can create a new account with email password only, no regirsteration flow)
 add chart libarary 
