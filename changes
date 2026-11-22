@@ -17,5 +17,6 @@ add eract query for cache
 
 
 we are going to deploy in render web service 
-we are going to deploy this app so we need 2 env, prod and test so we use 2 DB 
+we are going to deploy this app so we need 2 env, prod and test so we use 2 supabase project 
+
 
